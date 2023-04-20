@@ -15,6 +15,12 @@ jobs:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install dependencies
         run: dotnet restore ./Source/HelloWorld/LambdaTemplate/LambdaTemplate.csproj
+      - name: Build
+        run: dotnet build ./Source/HelloWorld/HelloWorld.sln --configuration Release --no-restore
+      - name: zip
+        uses: montudor/action-zip@v0.1.0
+        with:
+          args: zip -qq -r -v ./bundle.zip ./Source/HelloWorld/LambdaTemplate/bin/Release/net6.0/
       - name: default deploy
         uses: appleboy/lambda-action@v0.1.9
         with:
@@ -23,3 +29,4 @@ jobs:
           aws_region: ${{ secrets.AWS_REGION }}
           function_name: SQSReader
           source: Source/HelloWorld/LambdaTemplate/
+          runtime: linux-x64
