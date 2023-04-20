@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet-version: [ '3.1.x', '7.0.x' ]
+        dotnet-version: [ '6.0.x' ]
     steps:
       - name: checkout source code
         uses: actions/checkout@v3        
@@ -14,13 +14,13 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore ./Source/HelloWorld/LambdaTemplate/LambdaTemplate.csproj
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build ./Source/HelloWorld/HelloWorld.sln --configuration Release --no-restore
       - name: zip
         uses: montudor/action-zip@v0.1.0
         with:
-          args: zip -qq -r ./bundle.zip ./Source/Hello/LambdaTemplate
+          args: zip -qq -r ./bundle.zip ./Source/Hello/LambdaTemplate/bin/net6.0
       - name: default deploy
         uses: appleboy/lambda-action@v0.1.9
         with:
