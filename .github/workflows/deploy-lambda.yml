@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: dotnet restore ./Source/HelloWorld/LambdaTemplate/LambdaTemplate.csproj
       - name: Build
-        run: dotnet build ./Source/HelloWorld/HelloWorld.sln --configuration Release --no-restore
+        run: dotnet build ./Source/HelloWorld/HelloWorld.sln --configuration Release --no-restore -a linux-x64
       - name: zip
         uses: montudor/action-zip@v0.1.0
         with:
