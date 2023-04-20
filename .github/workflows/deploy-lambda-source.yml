@@ -24,4 +24,4 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: ${{ secrets.AWS_REGION }}
           function_name: SQSReader
-          source: Source/HelloWorld/LambdaTemplate/
+          source: Source/HelloWorld/LambdaTemplate/bin/Release/net6.0/linux-x64
