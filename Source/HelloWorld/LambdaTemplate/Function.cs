@@ -38,6 +38,6 @@ public class Function
     private void ProcessMessageAsync(SQSEvent.SQSMessage message, ILambdaContext context)
     {
         context.Logger.LogInformation($"Processed message {message.Body}");
-
+        context.Logger.LogInformation($"Processed message {message.Body}");
     }
 }
